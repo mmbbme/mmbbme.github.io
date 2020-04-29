@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>事件</title>
+		<style type="text/css">
+			input{font-size:26px;margin-top: 20px;}
+			body{background-image: url(images/grassland.png);}
+			#mytank{position: absolute;left:10px;top:100px}
+			
+			.testcss{
+				color: #FFFFFF;
+				background: #295FAB;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="按钮一" onclick="alert('javascript事件测试一')"/>
+		<input type="button" value="按钮二" ondblclick="this.value='按钮二测试'"/>
+		<input type="button" value="按钮三" onmouseover="this.classList.add('testcss')" onclick="alert('javascript事件测试三')"/>
+		<hr />
+		<img id="mytank" src="images/right.png"/>
+		<script type="text/javascript">
+			var mytank = document.getElementById('mytank');
+			window.addEventListener(
+				'keydown',
+				function(e){
+					console.log(e.keyCode);
+					//左37 上38 右39 下40
+					if(e.keyCode == 39){
+						mytank.style.webkitTransform = "rotate(0deg)"
+						mytank.style.left = (mytank.offsetLeft+10)+'px'; 
+					}
+					if(e.keyCode == 37){
+						mytank.style.webkitTransform = "rotate(180deg)"
+						mytank.style.left = (mytank.offsetLeft-10)+'px'; 
+					}
+					if(e.keyCode == 40){
+						mytank.style.webkitTransform = "rotate(90deg)"
+						mytank.style.top = (mytank.offsetTop+10)+'px'; 
+					}
+					if(e.keyCode == 38){
+						mytank.style.webkitTransform = "rotate(-90deg)"
+						mytank.style.top = (mytank.offsetTop-10)+'px'; 
+					}
+				}
+				);		
+			
+			
+		</script>
+	</body>
+</html>
