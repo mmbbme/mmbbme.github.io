@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+		<title>购物车</title>
+		<link rel="stylesheet" type="text/css" href="css/shoppingcart.css" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="body">
+			<div class="shop"><i></i><span>我的购物车</span></div>
+			<div class="product">
+				<div class="product-box">
+					<div class="product-ckb"><em class="product-em product-xz"></em></div>
+					<div class="product-sx">
+						<a href="###">
+							<img src="img/a3.png" class="product-img" />
+							<span class="product-name">酷冷至尊(Cooler Master)T610P CPU风冷散热器</span>
+							
+						</a>
+						<span class="product-price">¥&thinsp;<span class="price">299</span></span>
+						<div class="product-amount">
+							<div class="product_gw">
+								<em class="product-jian">-</em>
+								<input type="text" value="1" class="product-num" />
+								<em class="product-add">+</em>
+							</div>
+						</div>
+						<div class="product-del"><img src="img/deleteico.png" /></div>
+					</div>
+				</div>
+				<div class="product-box">
+					<div class="product-ckb"><em class="product-em"></em></div>
+					<div class="product-sx">
+						<a href="###">
+							<img src="img/a1.png" class="product-img" />
+							<span class="product-name">游戏悍将 35英寸曲面电竞显示器21:9带鱼屏准4K游戏显示器</span>
+						</a>
+						<span class="product-price">¥&thinsp;<span class="price">2099</span></span>
+						<div class="product-amount">
+							<div class="product_gw">
+								<em class="product-jian">-</em>
+								<input type="text" value="1" class="product-num" />
+								<em class="product-add">+</em>
+							</div>
+						</div>
+						<div class="product-del"><img src="img/deleteico.png" /></div>
+					</div>
+				</div>
+
+				<div class="product-box">
+					<div class="product-ckb"><em class="product-em"></em></div>
+					<div class="product-sx">
+						<a href="###">
+							<img src="img/a2.png" class="product-img" />
+							<span class="product-name">技嘉（GIGABYTE） 2080TURBO OC 8GC</span>
+						</a>
+						<span class="product-price">¥&thinsp;<span class="price">1099</span></span>
+						<div class="product-amount">
+							<div class="product_gw">
+								<em class="product-jian">-</em>
+								<input type="text" value="1" class="product-num" />
+								<em class="product-add">+</em>
+							</div>
+						</div>
+						<div class="product-del"><img src="img/deleteico.png" /></div>
+					</div>
+				</div>
+
+				<div class="product-box">
+					<div class="product-ckb"><em class="product-em"></em></div>
+					<div class="product-sx">
+						<a href="###">
+							<img src="img/a4.png" class="product-img" />
+							<span class="product-name">AMD 锐龙 5 2600X 处理器 (R5) 6核12线程 AM4 </span>
+						</a>
+						<span class="product-price">¥&thinsp;<span class="price">1299</span></span>
+						<div class="product-amount">
+							<div class="product_gw">
+								<em class="product-jian">-</em>
+								<input type="text" value="1" class="product-num" />
+								<em class="product-add">+</em>
+							</div>
+						</div>
+						<div class="product-del"><img src="img/deleteico.png" /></div>
+					</div>
+				</div>
+			</div>
+			<div class="product-js">
+				<div class="product-al">
+					<div class="product-all">
+						<em class=""></em>
+					</div>
+					<div class="all-xz"><span class="product-all-qx">全选</span>
+						<div class="all-sl" style="display: none;">(<span class="product-all-sl">0</span>)</div>
+					</div>
+				</div>
+				<a href="#" class="product-sett product-sett-a">结算</a>
+				<div class="all-product"><span class="all-product-a">¥&thinsp;<span class="all-price">299</span></span></div>
+
+			</div>
+		</div>
+		<!--购物车空-->
+		<div class="kon-cat">
+			<div class="catkon">
+				<div class="kon-box">
+					<div class="kon-hz">
+						<img src="img/cart-air.png" />
+						<span class="kon-wz">购物车什么都没有</span>
+						<a href="###" class="kon-lj">去逛逛</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		//179000502宗艺
+		/*首次获取总价*/
+		var all_price_static=$(".all-price").text()
+		/*判断是否总价是否位0，为0将结算按钮变灰，否则变宏*/
+		$(document).ready(function(){
+			if(all_price_static!=0)$(".product-sett").removeClass("product-sett-a")
+		  $(".all-price").bind("DOMNodeInserted",function () {
+		  	if($(this).text()==="0"){$(".product-sett").addClass("product-sett-a")}
+		  })
+		});
+		/*总价变化事件*/
+		/*增*/
+		$("em").bind("addPriceList",function (event, params) {
+			var num =$(params).parent().next().find(".price").text()
+			var price =$(params).parent().next().find(".product-num").val()
+			 // console.log((parseInt(num)*parseInt(price)).toString())
+			var all_price=$(".all-price").text()
+			// console.log(parseInt(all_price),parseInt(num),parseInt(price))
+			 $(".all-price").text((parseInt(all_price)+parseInt(num)*parseInt(price)).toString());
+			
+		})
+		/*减*/
+		$("em").bind("subPriceList",function (event, params) {
+			var num =$(params).parent().next().find(".price").text()
+			var price =$(params).parent().next().find(".product-num").val()
+			console.log(num,price)
+			 // console.log((parseInt(num)*parseInt(price)).toString())
+			var all_price=$(".all-price").text()
+			// console.log(parseInt(all_price),parseInt(num),parseInt(price))
+			 $(".all-price").text((parseInt(all_price)-parseInt(num)*parseInt(price)).toString());
+			
+		})
+		/*加减按钮事件，当前总价以及数量变化*/
+		$(".product-add").bind("click",function(){
+			$(this).siblings("input").val((parseInt($(this).siblings("input").val())+1).toString())
+			// $(this).trigger("addPriceList",)
+			var price = $(this).parent().parent().siblings(".product-price").find(".price").text()
+			var selected = $(this).parent().parent().parent().siblings(".product-ckb").children("em").hasClass("product-xz")
+			if(selected)
+				$(".all-price").text(parseInt($(".all-price").text())+parseInt(price))
+		})
+		$(".product-jian").bind("click",function(){
+			var contnum = $(this).siblings("input").val()
+			$(this).siblings("input").val(parseInt(contnum)>1?(parseInt(contnum)-1).toString():"1")
+			var price = $(this).parent().parent().siblings(".product-price").find(".price").text()
+			var selected = $(this).parent().parent().parent().siblings(".product-ckb").children("em").hasClass("product-xz")
+			if(selected&contnum>1)
+				$(".all-price").text(parseInt($(".all-price").text())-parseInt(price))
+		})
+		/*是否被选中，选中即有红色按钮，总价增加，反之则减去*/
+		$("em.product-em").bind("click",function(){
+			// $(this).hasClass("product-xz")?$(this).removeClass("product-xz"):$(this).addClass("product-xz")
+			if($(this).hasClass("product-xz")){
+				$(this).removeClass("product-xz")
+				$(this).trigger("subPriceList",$(this))
+				
+			}else{
+				$(this).addClass("product-xz")
+				$(".product-sett").removeClass("product-sett-a")
+				
+				// console.log(parseInt(a),parseInt(b))
+				 $(this).trigger("addPriceList",$(this))
+				 
+			}
+		})
+		/*全选按钮*/
+		$("em").last().bind("click",function () {
+			// $(this).hasClass("product-all-on")?$(this).removeClass("product-all-on"):$(this).addClass("product-all-on")	
+			if($(this).hasClass("product-all-on")){
+				$(this).removeClass("product-all-on")
+				$(".product-em").each(
+					function () {
+						$(this).removeClass("product-xz")
+						
+					}
+				)
+				$(".all-price").text("0")
+			}else{
+				$(this).addClass("product-all-on")
+				$(".product-em").each(
+					function () {
+						$(this).addClass("product-xz")
+						$(this).trigger("addPriceList",$(this))
+						$(".product-sett").removeClass("product-sett-a")
+					}
+					
+				)
+				$(".all-price").text((parseInt($(".all-price").text())-parseInt(all_price_static)).toString());
+			}
+			
+		}
+		)
+		/*删除事件，等到删除为0个商品时，显示购物车为空*/
+		$(".product-del").bind("click",function () {
+			var thisem = $(this).parent().siblings(".product-ckb").children("em")
+			var selected = $(this).parent().siblings(".product-ckb").children("em").hasClass("product-xz")
+			if(selected)
+				thisem.trigger("subPriceList",thisem)
+			$(this).parent().parent().remove()
+			if($(".product-box").length===0){
+				$(".kon-cat").css("display","block")
+			}
+		})
+
+	</script>
+</html>

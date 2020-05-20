@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.datepad{
+				
+				width: 150px;
+				height: 138px;
+				background: url(练习资源包07/cald.png)no-repeat;
+				font-family:"bodoni mt black" ;
+			}
+			.datepad #wekday{
+				color:#FFFFFF ;
+				text-align: center;
+				padding-top: 5px;
+			}
+			.datepad #day{
+				
+				text-align: center;
+				padding-top: 20px;
+				font-size: 3.125rem;
+				font-family: "arial black";
+			}
+			.clack{
+				color: #FFFFFF;
+				width: 240px;
+				height: 146px;
+				display: flex;
+				justify-content: center; /* 水平居中 */
+				align-items: center;     /* 垂直居中 */
+				background: url(练习资源包07/clock.png);
+			}
+			.clack #cl{
+				font-size: 3.125rem;
+				font-family: "arial narrow";
+				
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="showdate">
+			<div class="datepad">
+				<!-- <img src="练习资源包07/cald.png" > -->
+				<p id="wekday"></p>
+				<p id="day"></p>
+			</div>
+			<div class="clack">
+				
+				<p id="cl"></p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+		function showtime () {
+			var date = new Date()
+			
+			var h = date.getHours()<10?"0"+date.getHours():date.getHours()
+			var m = date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()
+			var s = date.getSeconds()<10?"0"+date.getSeconds():date.getSeconds()
+			var dateStr = `${h}:${m}:${s}`
+			
+			document.querySelector("#cl").innerHTML =dateStr
+			document.querySelector("#wekday").innerHTML = weekday[date.getDay()]
+			document.querySelector("#day").innerHTML = date.getDate()
+		}
+		
+		
+		setInterval(function() {
+			// document.querySelector("p").innerHTML = weekday[day]+"   "+date.getUTCDate();
+			 showtime()
+		}, 50);
+		
+
+	</script>
+</html>

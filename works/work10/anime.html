@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				position: relative
+			}
+		</style>
+	</head>
+	<body style="background-color: #000000;" >
+	
+		
+	</body>
+	<script type="text/javascript">
+		//0 未开大招 1大招
+		
+		var state = 0
+		$(document).ready(
+			
+			function () {
+				
+				$("body").append('<img src="img/player_right.gif" >')
+				
+				
+				
+				$("img").dblclick(
+					function () {
+						$("img").attr("src","img/playerbig_right.gif")
+						state = 1
+						
+					}
+				)
+			}
+		)
+		
+		$(document).click(
+			function (e) {
+				
+				var x=e.clientX-$("img").width()*1/2
+				var y=e.clientY-$("img").height()*1/2
+				
+				switch(state){
+					case 0:
+						if($("img").offset().left>x){
+							
+							$("img").attr("src","img/player_left.gif")
+						}else{
+							$("img").attr("src","img/player_right.gif")
+						}
+						break;
+					case 1:
+						if($("img").offset().left>x){
+							
+							$("img").attr("src","img/playerbig_left.gif")
+						}else{
+							$("img").attr("src","img/playerbig_right.gif")
+						}
+						break;
+				}
+				$("img").animate({
+					top:y,
+					left:x
+				},500)
+				
+			}
+		)
+		
+		
+		/*
+		y=$(this).pageX
+		x=$(this).pageY
+		console.log(1)
+		$("img").animate({
+			left:'"'+x+'"',
+			height:'"'+y+'"'
+		})*/
+	</script>
+</html>
